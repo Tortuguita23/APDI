@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atención a personas en situación de dependencia en instituciones</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <img src="assets/logo.svg" alt="Logotipo del centro" class="hero__logo">
+    <div class="hero__text">
+      <h1>Atención a personas en situación de dependencia en instituciones</h1>
+      <p class="hero__subtitle">Recursos formativos y documentación de apoyo</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="module">
+      <h2>MF1016: Apoyo psicosocial a personas en situación de dependencia en instituciones</h2>
+      <p>
+        Explora contenidos, actividades y materiales diseñados para reforzar las competencias
+        profesionales en contextos institucionales de apoyo a la dependencia.
+      </p>
+    </section>
+
+    <section class="unit">
+      <h3>UF128: Apoyo para la organización de actividades para personas en situación de dependencia en instituciones</h3>
+      <p>
+        Accede a guías y herramientas que facilitan la planificación de actividades significativas
+        y adaptadas a las necesidades de las personas en situación de dependencia.
+      </p>
+    </section>
+
+    <section class="access">
+      <h2>Acceso al documento del Drive</h2>
+      <p>Introduce el código facilitado por el centro para acceder directamente al recurso.</p>
+      <form class="access__form" id="driveAccessForm">
+        <label for="accessCode" class="access__label">Código de acceso</label>
+        <input type="text" id="accessCode" name="accessCode" class="access__input" placeholder="Introduce tu código" required>
+        <button type="submit" class="access__button">Abrir documento</button>
+        <p class="access__help">Si no dispones de un código, solicítalo a tu tutor/a.</p>
+      </form>
+      <p class="access__error" id="accessError" role="alert" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="currentYear"></span> Centro de formación. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    const accessCodes = {
+      // Sustituye el valor del ejemplo con el enlace real de tu Drive
+      "MF1016": "https://drive.google.com/"
+    };
+
+    const form = document.getElementById("driveAccessForm");
+    const codeInput = document.getElementById("accessCode");
+    const errorMessage = document.getElementById("accessError");
+    const currentYearElement = document.getElementById("currentYear");
+
+    currentYearElement.textContent = new Date().getFullYear();
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const code = codeInput.value.trim();
+
+      if (accessCodes[code]) {
+        window.open(accessCodes[code], "_blank");
+        errorMessage.textContent = "";
+        form.reset();
+      } else {
+        errorMessage.textContent = "Código no válido. Verifica la información y vuelve a intentarlo.";
+      }
+    });
+  </script>
+</body>
+</html>
