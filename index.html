@@ -45,37 +45,38 @@
     <p>&copy; <span id="currentYear"></span> Recurso creado por Graciela Cano. Todos los derechos reservados.</p>
   </footer>
 
-    <script>
-  const accessCodes = {
-    '1709': 'https://drive.google.com/file/d/1CmLdZ6-L8uEfOXxBBAkE1_zc01zyxxII/view?usp=drive_link',
-    '1609': 'https://drive.google.com/file/d/13aFtV6XQjffiqrr5XwRzpjHuEriCZNir/view?usp=drive_link'
-  };
-
-    
-    </script>
-
+  <!-- Todo el JS en un único bloque y sin llaves sueltas -->
+  <script>
+    const accessCodes = {
+      '1709': 'https://drive.google.com/file/d/1CmLdZ6-L8uEfOXxBBAkE1_zc01zyxxII/view?usp=drive_link',
+      '1609': 'https://drive.google.com/file/d/13aFtV6XQjffiqrr5XwRzpjHuEriCZNir/view?usp=drive_link'
     };
-   
 
-    const form = document.getElementById("driveAccessForm");
-    const codeInput = document.getElementById("accessCode");
-    const errorMessage = document.getElementById("accessError");
-    const currentYearElement = document.getElementById("currentYear");
+    const form = document.getElementById('driveAccessForm');
+    const codeInput = document.getElementById('accessCode');
+    const errorMessage = document.getElementById('accessError');
+    const currentYearElement = document.getElementById('currentYear');
 
-    currentYearElement.textContent = new Date().getFullYear();
+    if (currentYearElement) {
+      currentYearElement.textContent = new Date().getFullYear();
+    }
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const code = codeInput.value.trim();
+    if (form) {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const code = (codeInput.value || '').trim();
 
-      if (accessCodes[code]) {
-        window.open(accessCodes[code], "_blank");
-        errorMessage.textContent = "";
-        form.reset();
-      } else {
-        errorMessage.textContent = "Código no válido. Verifica la información y vuelve a intentarlo.";
-      }
-    });
+        const url = accessCodes[code];
+        if (url) {
+          // nueva pestaña (seguro) o usa window.location.href = url; para misma pestaña
+          window.open(url, '_blank', 'noopener,noreferrer');
+          errorMessage.textContent = '';
+          form.reset();
+        } else {
+          errorMessage.textContent = 'Código no válido. Verifica la información y vuelve a intentarlo.';
+        }
+      });
+    }
   </script>
 </body>
 </html>
