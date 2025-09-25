@@ -65,6 +65,38 @@ section h3 {
   color: var(--primary-color);
 }
 
+.form-embed {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-embed__header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.form-embed__header p {
+  margin: 0;
+  color: #4a5568;
+}
+
+.form-embed__frame {
+  width: min(100%, 760px);
+  margin: 0 auto;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(44, 82, 130, 0.12);
+}
+
+.form-embed__frame iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 0;
+  background-color: white;
+}
+
 .access__form {
   display: grid;
   gap: 0.75rem;
